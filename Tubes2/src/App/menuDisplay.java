@@ -28,8 +28,10 @@ public class menuDisplay {
             while (!autentikasiKaryawan) {
                 Screen.messageLine("\n Selamat Datang!");
                 setAutentikasiKaryawan();
+
             }
-            System.out.println("muka lu kek tai");
+            String namaKry = DBresepsionis.getNamaKaryawan(this.IDkaryawan);
+            System.out.println("Resepsionis " + namaKry + " telah berhasil masuk!");
             autentikasiKaryawan = false;
             IDkaryawan = 0;
             System.out.println("Goodbye!");
