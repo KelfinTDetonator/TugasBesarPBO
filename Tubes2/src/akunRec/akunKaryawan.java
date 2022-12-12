@@ -18,4 +18,5 @@ public class akunKaryawan {
          else {return false;}
     }
     public int getAkunID(){return IDkaryawan;}
+    public String getNamaKaryawan(){return namaKaryawan;}
 }
