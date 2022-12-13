@@ -1,0 +1,139 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Info{
+    - String username
+    - DataUser dataUser
+
+    + Info(String Username, DataUser infoDataUser)
+    + String getUsername()
+    + DataUser getDataUser()
+    + abstract void tampil()
+}
+class DataKamar{
+    Kamar
+    Hotel
+    Kamar[]
+}
+class DataUser{
+    - User[] users
+    - int count
+    + DataUser()
+    +void CreateAccount(String username,String nama,
+    String email, String nohp, String password,int Status)
+    +int AccountCount()
+    -User getUser(String username)
+    +boolean isLogin(String userUsername, String password)
+    +String getNama(String Userusername)
+    +String getEmail(String Userusername)
+    +String getNoHP(String Userusername)
+    +int getStatus(String Userusername)
+}
+class Hotel{
+    - String namaHotel
+    - String alamat
+    - String kategori
+    - Kamar[] kamar
+    menu
+    +Hotel(String namaHotel, String alamat, String kategori)
+    +void setKamar(Kamar[] kamar)
+    +void getMenu()
+    +void getInfo()
+    +void getInfoKamar()
+}
+
+class InformasiUser extends Info{
+    + InformasiUser(String username, DataUser infoDataUser)
+    + void tampil()
+}
+
+class InputAdmin{
+    - String namaHotel
+    - String alamat
+    - String kategori
+    + void menuHotel()
+    + void inputData()
+    + void viewData()
+}
+class Kamar{
+    - String nomorKamar
+    - String TipeKamar
+    - int harga
+    + Kamar(String nomorKamar, String TipeKamar, int harga)
+    + String getNomorKamar()
+    + String getTipeKamar()
+    + int getHarga()
+}
+class HotelApps{
+    - boolean userLogin
+    + String currentUsername
+    + int currentStatus
+    - DataUser dataUser
+    + HotelApps()
+    +public void haveAccount()
+    +void sessionLogin()
+    -void isLogin()
+    +void CreateAccount()
+    + void menuHotel()
+    +void menuTransaksi()
+    +void menuAdmin()
+}
+class MainApp{
+    HotelApps loginuser
+    loginuser.haveAccount();
+}
+class Reservasi{
+    - int Lama
+    - int harga
+    -int total
+    -String checkin
+    -String checkout
+    -String pilihKamar
+    -User username
+    -Hotel hotel
+    -Kamar[] kamar
+    DataKamar dt
+    +void setHotel(Hotel hotel)
+    +void Transaksi()
+    +void hitungTotalHarga()
+    +void kodeReservasi()
+    +void cetakData()
+}
+class User{
+     - String username
+     - int password
+     - String nama
+     - String email
+     - String nohp
+     - int status
+     +User(String Username, String Nama, String Email,
+     String Nohp, String Password, int Status)
+     +boolean validasiPass(String userPassword)
+     +String getNama()
+     +String getEmail()
+     +String getNohp()
+     +String getUsername()
+     +int getStatus()
+}
+
+MainApp -- HotelApps
+
+HotelApps -- DataUser
+HotelApps <-- InputAdmin
+HotelApps -- Reservasi
+HotelApps -- DataKamar
+HotelApps -- InformasiUser
+
+Hotel -- Kamar
+Hotel -- HotelApps
+
+Reservasi -- User
+Reservasi -- Hotel
+Reservasi -- Kamar
+
+User -- DataUser
+
+DataKamar -- Kamar
+DataKamar -- Hotel
+DataKamar -- Reservasi
+@enduml
